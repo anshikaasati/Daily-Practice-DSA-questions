@@ -1,0 +1,56 @@
+class Solution {
+public:
+    int minTimeToVisitAllPoints(vector<vector<int>>& points) {
+        int start_x = points[0][0];
+        int start_y = points[0][1];
+        int count=0;
+        for(int i=1;i<points.size();i++){
+            //cout<<i<<endl;
+            if(start_x == points[i][0] && start_y == points[i][1]){
+                continue;
+                //cout<<start_x<<" "<<start_y<<endl;
+            }
+
+            //diagonal moves
+            while(start_x < points[i][0] && start_y < points[i][1]){
+                start_x++; start_y++; count++;
+                //cout<<start_x<<" "<<start_y<<endl;
+            }
+            while(start_x < points[i][0] && start_y > points[i][1]){
+                start_x++; start_y--; count++;
+                //cout<<start_x<<" "<<start_y<<endl;
+            }
+            while(start_x > points[i][0] && start_y > points[i][1]){
+                start_x--; start_y--; count++;
+                //cout<<start_x<<" "<<start_y<<endl;
+            }
+            while(start_x > points[i][0] && start_y < points[i][1]){
+                start_x--; start_y++; count++;
+                //cout<<start_x<<" "<<start_y<<endl;
+            }
+
+            //straight moves
+            while(start_x < points[i][0] && start_y == points[i][1]){
+                start_x++;
+                count++;
+                //cout<<start_x<<" "<<start_y<<endl;
+            }
+            while(start_x > points[i][0] && start_y == points[i][1]){
+                start_x--;
+                count++;
+                //cout<<start_x<<" "<<start_y<<endl;
+            }
+            while(start_y < points[i][1] && start_x == points[i][0]){
+                start_y++;
+                count++;
+                //cout<<start_x<<" "<<start_y<<endl;
+            }
+            while(start_y > points[i][1] && start_x == points[i][0]){
+                start_y--;
+                count++;
+                //cout<<start_x<<" "<<start_y<<endl;
+            }
+        }
+        return count;
+    }
+};
